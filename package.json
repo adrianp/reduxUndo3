@@ -1,0 +1,22 @@
+{
+  "name": "redux-history-test",
+  "version": "1.0.0",
+  "description": "POC for https://github.com/omnidan/redux-ignore/issues/3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "redux",
+    "redux-ignore",
+    "redux-undo"
+  ],
+  "author": "Adrian-Tudor Panescu <adrian@panescu.com>",
+  "license": "MIT",
+  "repository": "adrianp/reduxUndo3",
+  "dependencies": {
+    "redux": "^3.0.4",
+    "redux-ignore": "^1.2.0",
+    "redux-undo": "^0.5.0"
+  }
+}
