@@ -60,19 +60,18 @@ var reducer = function reducer() {
 // const store = createStore(ignoreActions(reducer, [actions.bogus]));
 
 var store = (0, _redux.createStore)((0, _redux.combineReducers)({
-	ignore: (0, _reduxIgnore.ignoreActions)(reducer, function (action) {
+	reducer: (0, _reduxUndo2['default'])((0, _reduxIgnore.ignoreActions)(reducer, function (action) {
 		return action.type === 'bogus';
-	}),
-	undo: (0, _reduxUndo2['default'])(reducer)
+	}))
 }));
 
 store.subscribe(function () {
-	console.log('IGNORE:', store.getState().ignore.type);
-	console.log('UNDO PRESENT:', store.getState().undo.present);
-	console.log('UNDO PAST:', store.getState().undo.past);
+	console.log('Present:', store.getState().reducer.present);
+	console.log('Past:', store.getState().reducer.past);
 	console.log('---');
 });
 
 store.dispatch(actions.toggle);
 store.dispatch(actions.bogus);
+store.dispatch(actions.toggle);
 

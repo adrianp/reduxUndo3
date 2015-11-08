@@ -49,18 +49,16 @@ const reducer = (state = states.one, action = actions.toggle) => {
 // const store = createStore(ignoreActions(reducer, [actions.bogus]));
 
 const store = createStore(combineReducers({
-	ignore: ignoreActions(reducer, (action) => {
-		return action.type === 'bogus';
-	}),
-	undo: undoable(reducer)
+	reducer: undoable(ignoreActions(
+		reducer, (action) => action.type === 'bogus'))
 }));
 
 store.subscribe(() => {
-	console.log('IGNORE:', store.getState().ignore.type);
-	console.log('UNDO PRESENT:', store.getState().undo.present);
-	console.log('UNDO PAST:', store.getState().undo.past);
+	console.log('Present:', store.getState().reducer.present);
+	console.log('Past:', store.getState().reducer.past);
 	console.log('---');
 });
 
 store.dispatch(actions.toggle);
 store.dispatch(actions.bogus);
+store.dispatch(actions.toggle);
